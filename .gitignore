@@ -1,0 +1,9 @@
+# dependecies
+/node_modules
+
+# IDE
+.idea/
+
+# builds and test coverage
+/dist
+/coverage
