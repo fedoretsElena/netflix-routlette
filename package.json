@@ -7,8 +7,8 @@
     "test": "jest -c jest.config.js --watchAll",
     "start": "webpack-dev-server --mode development --open --hot",
     "build": "webpack",
-    "build:dev": "webpack --mode development",
-    "build:prod": "webpack --mode production"
+    "build:dev": "cross-env NODE_ENV=development webpack",
+    "build:prod": "cross-env NODE_ENV=production webpack"
   },
   "author": "Olena_Fedorets@epam.com",
   "license": "ISC",
@@ -30,6 +30,7 @@
     "@testing-library/react": "^10.4.7",
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
+    "cross-env": "^7.0.2",
     "css-loader": "^4.1.0",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.3.0",
