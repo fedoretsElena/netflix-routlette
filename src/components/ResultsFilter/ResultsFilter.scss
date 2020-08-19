@@ -1,0 +1,15 @@
+@import './../../styles/variables';
+
+.genres {
+  list-style: none;
+}
+
+.genre {
+  cursor: pointer;
+  transition: .3s border-bottom-color;
+  border-bottom: 2px solid transparent;
+
+  &:hover, &--active {
+    border-bottom-color: $primary;
+  }
+}

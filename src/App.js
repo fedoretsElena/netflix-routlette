@@ -1,14 +1,16 @@
 import React from 'react';
 
-import './index.scss';
+import './App.scss';
+import Home from './pages/Home/Home';
+import Footer from "./components/Footer/Footer";
 
 class App extends React.Component {
 
   render() {
-    console.log('Review source maps in diff envs');
     return (
-      <div>
-        I'm alive!
+      <div className="wrapper">
+        <Home/>
+        <div className="footer"><Footer/></div>
       </div>
     )
   }

@@ -1,0 +1,23 @@
+@import './../../styles/variables';
+
+.results {
+  margin-top: 2px;
+  border-top: 7px solid $secondary;
+
+  &__controls {
+    position: relative;
+
+    &:after {
+      content: '';
+      width: 100%;
+      bottom: 0;
+      z-index: -1;
+      position: absolute;
+      border-bottom: 2px solid $secondary;
+    }
+  }
+
+  &__empty-msg {
+    font-size: 50px;
+  }
+}
