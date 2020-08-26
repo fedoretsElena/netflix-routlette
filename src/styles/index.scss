@@ -1,6 +1,8 @@
 @import './variables.scss';
-@import './form.scss';
 @import '~bootstrap/scss/bootstrap';
+
+@import './form.scss';
+@import './modal.scss';
 
 body {
   color: $light;
@@ -10,6 +12,15 @@ body {
 
 .container {
   max-width: $max-container-width!important;
+}
+
+.btn {
+  min-width: 150px;
+  text-transform: uppercase;
+}
+
+button:focus {
+  outline: none;
 }
 
 .f-size-16 {

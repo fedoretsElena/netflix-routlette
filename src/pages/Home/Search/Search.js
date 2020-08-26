@@ -12,7 +12,7 @@ export default class Search extends React.Component {
         <Form className="d-flex">
           <Form.Control size="lg" className="input" placeholder="What do you want to watch?" />
 
-          <Button className="text-uppercase ml-2 px-5" variant="primary" size="lg" type="submit">
+          <Button className="text-uppercase ml-2" variant="primary" size="lg" type="submit">
             Search
           </Button>
         </Form>

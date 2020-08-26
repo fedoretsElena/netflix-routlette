@@ -7,6 +7,23 @@ import MoviesList from "../MoviesList/MoviesList";
 import movies from "../../mocks/movies";
 
 export default class Results extends React.Component {
+
+  componentDidMount() {
+    console.log('fetch data should be here');
+  }
+
+  componentWillUnmount() {
+    console.log('componentWillUnmount');
+  }
+
+  handleMovieEditing = (movie) => {
+    console.log('Edit', movie);
+  }
+
+  handleMovieDeleting = (deletedId) => {
+    console.log('Delete', deletedId);
+  }
+
   render() {
     const moviesList = [...movies];
     const categories = Array.from(new Set(
@@ -22,7 +39,11 @@ export default class Results extends React.Component {
           </div>
 
           {moviesList.length
-            ? <MoviesList movies={moviesList}/>
+            ? <MoviesList 
+                movies={moviesList} 
+                onEditMovie={this.handleMovieEditing}
+                onDeleteMovie={this.onDeleteMovie}
+              />
             : <div className="results__empty-msg text-center mt-5 pt-5">No Movie Found</div>
           }
         </div>
