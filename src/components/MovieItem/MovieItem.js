@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import './MovieItem.scss';
@@ -7,16 +7,28 @@ import EditMovieModal from '../EditMovieModal/EditMovieModal';
 import DeleteMovieModal from '../DeleteMovieModal/DeleteMovieModal';
 
 const MovieItem = ({movie: {id, poster_path, title, genres, release_date}, onDeleteMovie, onEditMovie}) => {
-  const releaseDateYear = new Date(release_date).getFullYear();
+  const releaseDateYear = useMemo(() => new Date(release_date).getFullYear(), [release_date]);
+  const genresList = useMemo(() => genres.join(', '), [genres]);
 
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
-  const handleEditModalClose = () => setShowEditModal(false);
-  const handleDeleteModalClose = () => setShowDeleteModal(false);
+  const handleEditModalClose = useCallback((value) => {
+    setShowEditModal(false);
+    if (value) {
+      onEditMovie(value);
+    }
+  }, [id]);
 
-  const handleEditModalShow = () => setShowEditModal(true);
-  const handleDeleteModalShow = () => setShowDeleteModal(true);
+  const handleDeleteModalClose = useCallback((agree) => {
+    setShowDeleteModal(false);
+    if (agree) {
+      onDeleteMovie(id);
+    }
+  }, [id]);
+
+  const handleEditModalShow = useCallback(() => setShowEditModal(true), [id]);
+  const handleDeleteModalShow = useCallback(() => setShowDeleteModal(true), [id]);
 
   return (<>
       <div className="movie">
@@ -29,7 +41,7 @@ const MovieItem = ({movie: {id, poster_path, title, genres, release_date}, onDel
             /></div>
         </div>
         <h5 className="movie__title mb-1">{title}</h5>
-        <div className="movie__genre">{genres.join(', ')}</div>
+        <div className="movie__genre">{genresList}</div>
         <div className="movie__release-date">{releaseDateYear}</div>
       </div>
 

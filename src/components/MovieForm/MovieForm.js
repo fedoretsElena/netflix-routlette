@@ -1,8 +1,10 @@
-import React from 'react';
-import { Form } from 'react-bootstrap';
+import React from "react";
+import { Form } from "react-bootstrap";
+
+import categoriesVocabulary from "./../../mocks/categories";
 
 export default function MovieForm() {
-  const categories = ['Adventure', 'Drama', 'Comedy'];
+  const categories = [...categoriesVocabulary];
 
   return (
       <Form autoComplete="false">
