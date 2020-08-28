@@ -1,0 +1,40 @@
+@import 'variables';
+
+.form {
+
+  &-group:not(:last-child) {
+    margin-bottom: 30px;
+  }
+
+  &-control { 
+    &, &:focus {
+      color: white;
+      border: none;
+      box-shadow: none;
+      background: $secondary;
+    }
+  }
+
+  &-label {
+    text-transform: uppercase;
+    color: $primary;
+    margin-bottom: 10px;
+    letter-spacing: .5px;
+  }
+}
+
+.select.form-control {
+  cursor: pointer;
+  min-width: 160px;
+  text-transform: uppercase;
+
+  &, &:focus {
+    background: transparent;
+  }
+
+  option {
+    cursor: pointer;
+    background: $dark;
+    text-transform: capitalize;
+  }
+}

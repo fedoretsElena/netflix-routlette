@@ -1,0 +1,36 @@
+@import './variables.scss';
+@import '~bootstrap/scss/bootstrap';
+
+@import './form.scss';
+@import './modal.scss';
+
+body {
+  color: $light;
+  background: $dark;
+  font-family: Roboto, Arial;
+}
+
+.container {
+  max-width: $max-container-width!important;
+}
+
+.btn {
+  min-width: 150px;
+  text-transform: uppercase;
+}
+
+button:focus {
+  outline: none;
+}
+
+.f-size-16 {
+  font-size: 16px;
+}
+
+.f-size-18 {
+  font-size: 18px;
+}
+
+.f-size-20 {
+  font-size: 20px;
+}

@@ -1,0 +1,14 @@
+$footer-height: 65px;
+
+.wrapper {
+  position: relative;
+  min-height: 100vh;
+  padding-bottom: $footer-height;
+}
+
+.footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  position: absolute;
+}

@@ -1,0 +1,53 @@
+@import 'variables';
+
+$max-content-width: 90%;
+
+.modal {
+
+  &-dialog {
+    max-width: 600px;
+  }
+
+  &-content {
+    color: white;
+    background: $dark;
+  }
+
+  &-header, &-footer {
+    border: none;
+  }
+
+  &-header {
+    text-transform: uppercase;
+
+    .close {
+      opacity: 1;
+      font-weight: 100;
+      font-size: 50px;
+      color: white;
+      padding: 5px 1rem 0;
+    }
+  }
+
+  &-title {
+    font-size: 32px;
+    font-weight: 100;
+    letter-spacing: 1px;
+    width: $max-content-width;
+    margin: 20px 0 0 30px;
+  }
+
+  &-footer, &-body {
+    width: $max-content-width;
+    margin: 0 auto;
+  }
+
+  &-footer {
+    margin: 20px auto;
+  }
+
+  &-backdrop.show {
+    opacity: .7;
+  }
+
+}
