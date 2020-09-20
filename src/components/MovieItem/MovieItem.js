@@ -6,7 +6,8 @@ import MovieActionBtn from '../MovieActionBtn/MovieActionBtn';
 import EditMovieModal from '../EditMovieModal/EditMovieModal';
 import DeleteMovieModal from '../DeleteMovieModal/DeleteMovieModal';
 
-const MovieItem = ({movie: {id, poster_path, title, genres, release_date}, onDeleteMovie, onEditMovie}) => {
+const MovieItem = ({movie, onDeleteMovie, onEditMovie}) => {
+  const {id, poster_path, title, genres, release_date} = movie;
   const releaseDateYear = useMemo(() => new Date(release_date).getFullYear(), [release_date]);
   const genresList = useMemo(() => genres.join(', '), [genres]);
 
@@ -32,7 +33,7 @@ const MovieItem = ({movie: {id, poster_path, title, genres, release_date}, onDel
 
   return (<>
       <div className="movie">
-        <div className="movie__poster mb-3">
+        <div className="movie__poster pb-3">
           <img src={poster_path} alt="poster"/>
           <div className="movie__actions">
             <MovieActionBtn 
@@ -40,12 +41,12 @@ const MovieItem = ({movie: {id, poster_path, title, genres, release_date}, onDel
               handleDeleteClick={handleDeleteModalShow}
             /></div>
         </div>
-        <h5 className="movie__title mb-1">{title}</h5>
+        <h5 className="movie__title text-truncate mb-1">{title}</h5>
         <div className="movie__genre">{genresList}</div>
         <div className="movie__release-date">{releaseDateYear}</div>
       </div>
 
-      <EditMovieModal show={showEditModal} handleClose={handleEditModalClose} />
+      <EditMovieModal movie={movie} show={showEditModal} handleClose={handleEditModalClose} />
       <DeleteMovieModal show={showDeleteModal} handleClose={handleDeleteModalClose} />
     </>
   )

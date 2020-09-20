@@ -6,7 +6,7 @@ export const useComponentDidMount = (callback) => {
   useEffect(() => { callback() }, []);
 }
 
-const useComponentDidUpdate = (callback, memo) => {
+export const useComponentDidUpdate = (callback, memo) => {
   const flag = useRef(false);
 
   if (!flag.current) {

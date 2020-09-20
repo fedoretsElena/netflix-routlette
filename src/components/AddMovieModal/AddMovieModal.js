@@ -3,8 +3,13 @@ import { Modal, Button } from "react-bootstrap";
 import { PropTypes } from "prop-types";
 
 import MovieForm from './../MovieForm/MovieForm';
+import movies from "./../../mocks/movies";
 
 export default function AddMovieModal({show, handleClose}) {
+  // TODO: should be replaced after implementation form tasks
+  const [movie] = movies;
+  delete movie.id;
+
   return (
     <Modal show={show} onHide={handleClose} backdrop="static">
       <Modal.Header closeButton>
@@ -17,7 +22,7 @@ export default function AddMovieModal({show, handleClose}) {
 
       <Modal.Footer>
         <Button type="reset" variant="outline-primary" size="lg">Reset</Button>
-        <Button variant="primary" onClick={handleClose} size="lg">Submit</Button>
+        <Button variant="primary" onClick={() => handleClose(movie)} size="lg">Submit</Button>
       </Modal.Footer>
     </Modal>
   )
