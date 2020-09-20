@@ -1,0 +1,18 @@
+@import './../../styles/variables';
+@import './../../components/Header/Header';
+
+.details {
+
+  &__poster {
+    width: 278px;
+    height: auto;
+  }
+
+  &__vote-average {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 1px solid white;
+    color: $success;
+  }
+}

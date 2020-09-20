@@ -5,9 +5,8 @@ import { PropTypes } from "prop-types";
 import MovieForm from './../MovieForm/MovieForm';
 
 export default function EditMovieModal({show, handleClose}) {
-  const categories = ['Adventure', 'Drama', 'Comedy'];
   return (
-    <Modal show={show} onHide={handleClose} backdrop="static">
+    <Modal show={show} onHide={() => handleClose(null)} backdrop="static">
       <Modal.Header closeButton>
         <Modal.Title>Edit movie</Modal.Title>
       </Modal.Header>
@@ -22,7 +21,7 @@ export default function EditMovieModal({show, handleClose}) {
 
       <Modal.Footer>
         <Button type="reset" variant="outline-primary" size="lg">Reset</Button>
-        <Button variant="primary" onClick={handleClose} size="lg">Submit</Button>
+        <Button variant="primary" onClick={() => handleClose({})} size="lg">Submit</Button>
       </Modal.Footer>
     </Modal>
   )

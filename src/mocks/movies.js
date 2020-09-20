@@ -3,7 +3,10 @@ const movies = [{
   title: 'Pulp Fiction',
   release_date: new Date(2004),
   genres: ['Action', 'Adventure'],
-  poster_path: 'https://i.ebayimg.com/images/g/1u4AAOSwIhtanRmj/s-l400.jpg'
+  poster_path: 'https://i.ebayimg.com/images/g/1u4AAOSwIhtanRmj/s-l400.jpg',
+  vote_average: 7.9,
+  overview: 'Pulp Fiction is a 1994 American neo-noir black comedy crime film written and directed by Quentin Tarantino, who conceived it with Roger Avary. Starring John Travolta, Samuel L. Jackson, Bruce Willis, Tim Roth, Ving Rhames, and Uma Thurman, it tells several stories of criminal Los Angeles. The title refers to the pulp magazines and hardboiled crime novels popular during the mid-20th century, known for their graphic violence and punchy dialogue.',
+  runtime: 154
 }, {
   id: 3133469,
   title: 'Bohemian Rhapsody',

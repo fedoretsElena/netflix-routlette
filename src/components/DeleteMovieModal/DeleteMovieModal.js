@@ -1,10 +1,10 @@
 import React from "react";
-import {Modal, Button, Form} from "react-bootstrap";
+import {Modal, Button} from "react-bootstrap";
 import { PropTypes } from "prop-types";
 
 export default function DeleteMovieModal({show, handleClose}) { 
   return (
-    <Modal show={show} onHide={handleClose} backdrop="static">
+    <Modal show={show} onHide={() => handleClose(false)} backdrop="static">
       <Modal.Header closeButton>
         <Modal.Title>Delete movie</Modal.Title>
       </Modal.Header>
@@ -14,7 +14,7 @@ export default function DeleteMovieModal({show, handleClose}) {
       </Modal.Body>
 
       <Modal.Footer> 
-        <Button variant="primary" onClick={handleClose} size="lg">Confirm</Button>
+        <Button variant="primary" onClick={() => handleClose(true)} size="lg">Confirm</Button>
       </Modal.Footer>
     </Modal>
   )
