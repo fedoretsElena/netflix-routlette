@@ -14,12 +14,7 @@ const MovieItem = ({movie, onDeleteMovie, onEditMovie}) => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
-  const handleEditModalClose = useCallback((value) => {
-    setShowEditModal(false);
-    if (value) {
-      onEditMovie(value);
-    }
-  }, [id]);
+  const handleEditModalClose = () => setShowEditModal(false);
 
   const handleDeleteModalClose = useCallback((agree) => {
     setShowDeleteModal(false);
@@ -43,10 +38,10 @@ const MovieItem = ({movie, onDeleteMovie, onEditMovie}) => {
         </div>
         <h5 className="movie__title text-truncate mb-1">{title}</h5>
         <div className="movie__genre">{genresList}</div>
-        <div className="movie__release-date">{releaseDateYear}</div>
+        {releaseDateYear ? (<div className="movie__release-date">{releaseDateYear}</div>) : ''}
       </div>
 
-      <EditMovieModal movie={movie} show={showEditModal} handleClose={handleEditModalClose} />
+      <EditMovieModal movie={movie} show={showEditModal} handleClose={handleEditModalClose} handleSubmit={onEditMovie} />
       <DeleteMovieModal show={showDeleteModal} handleClose={handleDeleteModalClose} />
     </>
   )

@@ -1,15 +1,10 @@
 import React from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import { PropTypes } from "prop-types";
 
 import MovieForm from './../MovieForm/MovieForm';
-import movies from "./../../mocks/movies";
 
-export default function AddMovieModal({show, handleClose}) {
-  // TODO: should be replaced after implementation form tasks
-  const [movie] = movies;
-  delete movie.id;
-
+export default function AddMovieModal({show, handleClose, handleSubmit}) {
   return (
     <Modal show={show} onHide={handleClose} backdrop="static">
       <Modal.Header closeButton>
@@ -17,18 +12,14 @@ export default function AddMovieModal({show, handleClose}) {
       </Modal.Header>
 
       <Modal.Body>
-        <MovieForm />
+        <MovieForm handleSubmit={handleSubmit}/>
       </Modal.Body>
-
-      <Modal.Footer>
-        <Button type="reset" variant="outline-primary" size="lg">Reset</Button>
-        <Button variant="primary" onClick={() => handleClose(movie)} size="lg">Submit</Button>
-      </Modal.Footer>
     </Modal>
   )
 }
 
 AddMovieModal.propTypes = {
   show: PropTypes.bool,
-  handleClose: PropTypes.func
+  handleClose: PropTypes.func,
+  handleSubmit: PropTypes.func
 }

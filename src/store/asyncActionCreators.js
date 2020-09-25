@@ -33,29 +33,3 @@ export function deleteMovie(id) {
       .then((response) => dispatch(deleteMovieSuccess(id)))
   }
 }
-
-export function createMovie(movie) {
-  return (dispatch) => {
-    fetch(MOVIES_API_PATH, {
-      method: 'POST',
-      body: JSON.stringify(movie),
-      headers: {
-        'Content-Type': 'application/json'
-      }})
-      .then((response) => response.json()
-        .then((movie) => dispatch(createMovieSuccess(movie))))
-  }
-}
-
-export function editMovie(movie) {
-  return (dispatch) => {
-    fetch(MOVIES_API_PATH, {
-      method: 'PUT',
-      body: JSON.stringify(movie),
-      headers: {
-        'Content-Type': 'application/json'
-      }})
-      .then((response) => response.json()
-        .then((movie) => dispatch(editMovieSuccess(movie))))
-  }
-}

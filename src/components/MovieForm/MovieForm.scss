@@ -1,0 +1,9 @@
+.form-group {
+  position: relative;
+
+  .error {
+    right: 0;
+    bottom: -24px;
+    position: absolute;
+  }
+}
