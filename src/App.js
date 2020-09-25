@@ -14,8 +14,8 @@ class App extends React.Component {
       <div className="wrapper">
         {/*Router will be here*/}
         <ErrorBoundary>
-          <Details/>
-          {/*<Home/>*/}
+          {/*<Details/>*/}
+          <Home/>
         </ErrorBoundary>
 
         <ErrorBoundary>

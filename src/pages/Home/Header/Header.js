@@ -1,16 +1,23 @@
 import React, {useState} from 'react';
 import { Button } from 'react-bootstrap';
+import { connect } from "react-redux";
 
 import './Header.scss';
 import './../../../components/Header/Header.scss';
 import Logo from '../../../components/Logo/Logo';
 import Search from '../Search/Search';
 import AddMovieModal from "../../../components/AddMovieModal/AddMovieModal";
+import { createMovie } from "./../../../store/asyncActionCreators";
 
-export default function Header() {
+function Header({createMovie}) {
   const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
+  const handleClose = (value) => {
+    setShow(false);
+    if (value) {
+      createMovie(value);
+    }
+  }
   const handleShow = () => setShow(true);
 
   return (
@@ -31,3 +38,11 @@ export default function Header() {
     </header>
   )
 }
+
+function mapDispatchToProps(dispatch) {
+  return {
+    createMovie: (movie) => dispatch(createMovie(movie))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Header);
