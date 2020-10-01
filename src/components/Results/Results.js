@@ -5,13 +5,14 @@ import "./Results.scss";
 import ResultsSort from "../ResultsSort/ResultsSort";
 import ResultsFilter from "../ResultsFilter/ResultsFilter";
 import MoviesList from "../MoviesList/MoviesList";
-import { deleteMovie, editMovie, moviesFetchData } from "./../../store/asyncActionCreators";
-import { filterByChanged, sortByChanged } from "./../../store/actionCreators";
+import { deleteMovie, moviesFetchData } from "./../../store/asyncActionCreators";
+import { filterByChanged, sortByChanged, editMovieSuccess } from "./../../store/actionCreators";
 import categoriesVocabulary from "./../../mocks/categories";
+import { MOVIES_API_PATH } from "./../../core/api-config";
 
 function Results({
  movies, loading, error, totalAmount, filterParams,
- fetchMoviesData, deleteMovie, editMovie, sortByChanged, filterByChanged
+ fetchMoviesData, deleteMovie, editMovieSuccess, sortByChanged, filterByChanged
 }) {
   useEffect(() => {
     fetchMoviesData(filterParams);
@@ -21,7 +22,22 @@ function Results({
     fetchMoviesData(filterParams);
   }, []);
 
-  const handleMovieEditing = (movie) => editMovie(movie);
+  const handleMovieEditing = (movie) => {
+    return fetch(MOVIES_API_PATH, {
+      method: 'PUT',
+      body: JSON.stringify(movie),
+      headers: {
+        'Content-Type': 'application/json'
+      }})
+      .then(async response => {
+        const data = await response.json();
+        if (!response.ok) {
+          throw new Error(data.messages.toString());
+        }
+
+        editMovieSuccess(data);
+      });
+  }
 
   const handleMovieDeleting = (id) => deleteMovie(id);
 
@@ -58,14 +74,13 @@ function mapDispatchToProps(dispatch) {
   return {
     fetchMoviesData: (params) => dispatch(moviesFetchData(params)),
     deleteMovie: (id) => dispatch(deleteMovie(id)),
-    editMovie: (movie) => dispatch(editMovie(movie)),
+    editMovieSuccess: (movie) => dispatch(editMovieSuccess(movie)),
     sortByChanged: (value) => dispatch(sortByChanged(value)),
     filterByChanged: (value) => dispatch(filterByChanged(value))
   };
 }
 
 function mapStateToProps(state) {
-  console.log('State', state);
   const {movies: {data, loading, error, totalAmount}} = state;
   const {filterParams} = state;
 

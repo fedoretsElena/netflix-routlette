@@ -7,18 +7,35 @@ import './../../../components/Header/Header.scss';
 import Logo from '../../../components/Logo/Logo';
 import Search from '../Search/Search';
 import AddMovieModal from "../../../components/AddMovieModal/AddMovieModal";
-import { createMovie } from "./../../../store/asyncActionCreators";
+import { createMovieSuccess } from "./../../../store/actionCreators";
+import { MOVIES_API_PATH } from "./../../../core/api-config";
 
-function Header({createMovie}) {
+function Header({createMovieSuccess}) {
   const [show, setShow] = useState(false);
 
-  const handleClose = (value) => {
-    setShow(false);
-    if (value) {
-      createMovie(value);
-    }
-  }
+  const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const createMovie = (movie) => {
+    return fetch(MOVIES_API_PATH, {
+      method: 'POST',
+      body: JSON.stringify(movie),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(async response => {
+      const data = await response.json();
+        if (!response.ok) {
+          throw new Error(data.messages.toString());
+        }
+
+        delete data.id;
+
+        createMovieSuccess(data);
+        handleClose();
+      });
+  }
 
   return (
     <header className="img-blur-container header p-3">
@@ -31,7 +48,7 @@ function Header({createMovie}) {
             onClick={handleShow}
           >+ Add movie</Button>
 
-          <AddMovieModal show={show} handleClose={handleClose}/>
+          <AddMovieModal show={show} handleClose={handleClose} handleSubmit={createMovie}/>
         </div>
         <Search/>
       </div>
@@ -41,7 +58,7 @@ function Header({createMovie}) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    createMovie: (movie) => dispatch(createMovie(movie))
+    createMovieSuccess: (movie) => dispatch(createMovieSuccess(movie))
   }
 }
 
