@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from "react-router-dom";
 
 import './MovieItem.scss';
 import MovieActionBtn from '../MovieActionBtn/MovieActionBtn';
@@ -29,14 +30,16 @@ const MovieItem = ({movie, onDeleteMovie, onEditMovie}) => {
   return (<>
       <div className="movie">
         <div className="movie__poster pb-3">
-          <img src={poster_path} alt="poster"/>
+          <Link to={`/film/${movie.id}`}>
+            <img src={poster_path} alt="poster"/>
+          </Link>
           <div className="movie__actions">
             <MovieActionBtn 
               handleEditClick={handleEditModalShow} 
               handleDeleteClick={handleDeleteModalShow}
             /></div>
         </div>
-        <h5 className="movie__title text-truncate mb-1">{title}</h5>
+        <h5 className="movie__title text-truncate mb-1"><Link to={`/film/${movie.id}`}>{title}</Link></h5>
         <div className="movie__genre">{genresList}</div>
         {releaseDateYear ? (<div className="movie__release-date">{releaseDateYear}</div>) : ''}
       </div>

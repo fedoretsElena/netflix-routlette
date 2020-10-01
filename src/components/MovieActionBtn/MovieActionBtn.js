@@ -1,5 +1,6 @@
 import React from "react";
 import * as Icon from "react-bootstrap-icons";
+import { PropTypes } from "prop-types";
 
 import "./MovieActionBtn.scss";
 import { useToggle } from "./../../hooks";
@@ -20,4 +21,9 @@ export default function MovieActionBtn({handleDeleteClick, handleEditClick}) {
         </div>
       </div>
   )
+}
+
+MovieActionBtn.propTypes = {
+  handleDeleteClick: PropTypes.func,
+  handleEditClick: PropTypes.func
 }

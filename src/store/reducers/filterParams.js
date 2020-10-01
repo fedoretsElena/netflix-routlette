@@ -3,7 +3,6 @@ import * as ACTIONS from "./../actionTypes";
 const initialState = {
   sortBy: 'release_date',
   sortOrder: 'desc',
-  search: '',
   searchBy: 'title',
   filter: [],
 };
