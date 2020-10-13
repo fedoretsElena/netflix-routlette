@@ -1,6 +1,5 @@
 import {
-  createMovieSuccess,
-  deleteMovieSuccess, editMovieSuccess,
+  deleteMovieSuccess,
   fetchMoviesFailed,
   fetchMoviesSuccess,
   moviesIsLoading,
@@ -8,7 +7,7 @@ import {
 import { MOVIES_API_PATH } from "./../core/api-config";
 import { sleeper } from "./../core/helpers";
 
-export function moviesFetchData(params = {}) {
+export function fetchMoviesData(params = {}) {
   return (dispatch) => {
     dispatch(moviesIsLoading(true));
     fetch(`${MOVIES_API_PATH}?` + new URLSearchParams(params))

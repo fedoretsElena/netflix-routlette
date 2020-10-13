@@ -1,26 +1,26 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { useParams } from 'react-router';
+import PropTypes from 'prop-types';
 
-import "./Results.scss";
-import ResultsSort from "../ResultsSort/ResultsSort";
-import ResultsFilter from "../ResultsFilter/ResultsFilter";
-import MoviesList from "../MoviesList/MoviesList";
-import { deleteMovie, moviesFetchData } from "./../../store/asyncActionCreators";
-import { filterByChanged, sortByChanged, editMovieSuccess } from "./../../store/actionCreators";
-import categoriesVocabulary from "./../../mocks/categories";
-import { MOVIES_API_PATH } from "./../../core/api-config";
+import './Results.scss';
+import ResultsSort from '../ResultsSort/ResultsSort';
+import ResultsFilter from '../ResultsFilter/ResultsFilter';
+import MoviesList from '../MoviesList/MoviesList';
+import { deleteMovie, fetchMoviesData } from './../../store/asyncActionCreators';
+import { filterByChanged, sortByChanged, editMovieSuccess } from './../../store/actionCreators';
+import categoriesVocabulary from './../../mocks/categories';
+import { MOVIES_API_PATH } from './../../core/api-config';
 
 function Results({
  movies, loading, error, totalAmount, filterParams,
  fetchMoviesData, deleteMovie, editMovieSuccess, sortByChanged, filterByChanged
 }) {
-  useEffect(() => {
-    fetchMoviesData(filterParams);
-  }, [filterParams]);
+  const {value: searchParam} = useParams();
 
   useEffect(() => {
-    fetchMoviesData(filterParams);
-  }, []);
+    fetchMoviesData({...filterParams, search: searchParam || ''});
+  }, [filterParams, searchParam]);
 
   const handleMovieEditing = (movie) => {
     return fetch(MOVIES_API_PATH, {
@@ -72,7 +72,7 @@ function Results({
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchMoviesData: (params) => dispatch(moviesFetchData(params)),
+    fetchMoviesData: (params) => dispatch(fetchMoviesData(params)),
     deleteMovie: (id) => dispatch(deleteMovie(id)),
     editMovieSuccess: (movie) => dispatch(editMovieSuccess(movie)),
     sortByChanged: (value) => dispatch(sortByChanged(value)),
@@ -88,3 +88,16 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Results);
+
+Results.propTypes = {
+  movies: PropTypes.array,
+  loading: PropTypes.bool,
+  error: PropTypes.string,
+  totalAmount: PropTypes.number,
+  filterParams: PropTypes.object,
+  fetchMoviesData: PropTypes.func,
+  deleteMovie: PropTypes.func,
+  editMovieSuccess: PropTypes.func,
+  sortByChanged: PropTypes.func,
+  filterByChanged: PropTypes.func,
+};

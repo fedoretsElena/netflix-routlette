@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 import './ResultsSort.scss';
 
@@ -24,6 +25,10 @@ const ResultsSort = ({onHandleChange}) => {
       </Form.Control>
     </span>
   </div>
+}
+
+ResultsSort.propTypes = {
+  onHandleChange: PropTypes.func
 }
 
 export default ResultsSort;

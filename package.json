@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest -c jest.config.js --watchAll",
-    "start": "webpack-dev-server --mode development --open --hot",
+    "start": "webpack-dev-server --mode development --open --hot --history-api-fallback",
     "build": "webpack",
     "build:dev": "cross-env NODE_ENV=development webpack",
     "build:prod": "cross-env NODE_ENV=production webpack"
@@ -24,6 +24,7 @@
     "react-dropdown-select": "^4.4.2",
     "react-redux": "^7.2.1",
     "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "yup": "^0.29.3"

@@ -33,6 +33,10 @@
 
   &__title {
     opacity: .7;
+
+    a, a:hover {
+      color: inherit;
+    }
   }
 
   &__genre, &__release-date {
