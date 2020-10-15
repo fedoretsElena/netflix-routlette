@@ -10,8 +10,8 @@ const MoviesList = ({movies, totalAmount, onDeleteMovie, onEditMovie}) => {
       <div className="f-size-20 py-1"><b>{totalAmount}</b> movies found</div>
 
       <div className="movies mt-2">
-        {movies.map((movie) => 
-          <MovieItem 
+        {movies?.map((movie) =>
+          <MovieItem
             movie={movie}
             key={movie.id} 
             onEditMovie={onEditMovie}

@@ -6,7 +6,7 @@ import MovieForm from './../MovieForm/MovieForm';
 
 export default function AddMovieModal({show, handleClose, handleSubmit}) {
   return (
-    <Modal show={show} onHide={handleClose} backdrop="static">
+    <Modal id="add-movie-modal" show={show} onHide={handleClose} backdrop="static">
       <Modal.Header closeButton>
         <Modal.Title>Add movie</Modal.Title>
       </Modal.Header>
