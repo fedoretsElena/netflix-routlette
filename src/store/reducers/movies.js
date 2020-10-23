@@ -1,13 +1,13 @@
 import * as ACTIONS from "./../actionTypes";
 
-const initialState = {
+export const initialState = {
   loading: false,
   error: null,
   data: null,
   totalAmount: 0
 };
 
-function moviesReducer(state = initialState, action) {
+function  moviesReducer(state = initialState, action) {
 
   switch (action.type) {
     case ACTIONS.MOVIES_IS_LOADING: {
@@ -40,7 +40,7 @@ function moviesReducer(state = initialState, action) {
       const movie = action.payload;
       return {
         ...state,
-        totalAmount: ++state.totalAmount,
+        totalAmount: state.totalAmount + 1,
         data: [movie, ...state.data]
       }
     }

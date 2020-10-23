@@ -15,7 +15,7 @@ const ResultsFilter = ({categories, onHandleSelected}) => {
 
   return (
     <ul className="genres d-flex p-0 m-0">
-      {categories.map((category) =>
+      {categories?.map((category) =>
         <li
           key={category.id}
           className={`genre text-uppercase text-truncate py-3 mr-3 ${category.active ? 'genre--active' : ''}`}

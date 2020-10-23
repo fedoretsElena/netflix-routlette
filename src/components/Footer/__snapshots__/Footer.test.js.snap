@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer component should render Footer snapshot 1`] = `
+<DocumentFragment>
+  <footer
+    class="p-3 bg-secondary text-center"
+  >
+    <div
+      class="logo f-size-18"
+    >
+       
+      <a
+        href="/"
+      >
+        <b>
+          netflix
+        </b>
+        roulette
+      </a>
+    </div>
+  </footer>
+</DocumentFragment>
+`;

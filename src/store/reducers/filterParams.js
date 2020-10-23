@@ -1,6 +1,6 @@
 import * as ACTIONS from "./../actionTypes";
 
-const initialState = {
+export const initialState = {
   sortBy: 'release_date',
   sortOrder: 'desc',
   searchBy: 'title',

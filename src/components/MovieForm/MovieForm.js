@@ -6,11 +6,12 @@ import { PropTypes } from "prop-types";
 
 import categoriesVocabulary from './../../mocks/categories';
 import './MovieForm.scss';
+import { deleteEmptyProps, getSummarizeErrors } from './helper';
 
 const schema = yup.object({
-  title: yup.string().required('is required'),
-  poster_path: yup.string().required('is required').url('not valid'),
-  overview: yup.string().required('is required'),
+  title: yup.string() ,
+  poster_path: yup.string() ,
+  overview: yup.string() ,
   budget: yup.number().min(0, 'too Short!'),
   revenue: yup.number().min(0, 'too Short!'),
   runtime: yup.number().required('is required').min(0, 'too Short!'),
@@ -35,34 +36,18 @@ export default function MovieForm({movie, handleSubmit, successCallback}) {
     genres: [],
   };
   const categories = [...categoriesVocabulary].filter(v => v !== 'All');
+  const handleFormikSubmit = (values, {setErrors}) =>
+    handleSubmit(deleteEmptyProps({...values}))
+      .then(successCallback)
+      .catch(({message}) => setErrors(getSummarizeErrors(message, movieFormInitial)));
+
 
   return (
     <Formik
       initialValues={movieFormInitial}
       validationSchema={schema}
       validateOnMount={true}
-      onSubmit={(values, {setErrors}) => {
-        const formValues = {...values}
-        Object.entries(formValues).forEach(([fieldKey, fieldValue]) => {
-          if (typeof fieldValue !== "number" && !fieldValue?.length) {
-            delete formValues[fieldKey];
-          }
-        })
-
-        handleSubmit(formValues).then(() => successCallback()).catch(({message})=> {
-          const errors = message.split(',').reduce((acc, str) => {
-            const fieldName = str.substring(
-              str.indexOf('"') + 1,
-              str.lastIndexOf('"'));
-            const description = str.substring(str.lastIndexOf('"') + 1).trim();
-            return {...acc, [fieldName]: description};
-          }, {});
-          const summarizeErrors = Object.keys(movieFormInitial)
-            .reduce((acc, key) => ({...acc, [key]: errors[key]}), {});
-
-         setErrors(summarizeErrors);
-        });
-      }}
+      onSubmit={(handleFormikSubmit)}
     >{({isValid, setFieldValue}) => {
       useEffect(() => {
         if (movie) {
@@ -72,10 +57,10 @@ export default function MovieForm({movie, handleSubmit, successCallback}) {
       }, [movie]);
 
       return (
-      <Form className="form">
+      <Form className="form" name="movie-form">
         <div className="form-group">
           <div className="form-label">Title</div>
-          <Field name="title" className="form-control form-control-lg input" placeholder="Movie name here" autoComplete="off" />
+          <Field name="title" id="title" className="form-control form-control-lg input" placeholder="Movie name here" autoComplete="off" />
           <ErrorMessage className="error" name="title" component="div" />
         </div>
 

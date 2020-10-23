@@ -23,6 +23,7 @@ export default function Search({handleSearch}) {
 
       <Form className="d-flex">
         <Form.Control
+          name="search"
           size="lg" className="input"
           placeholder="What do you want to watch?"
           value={search}
