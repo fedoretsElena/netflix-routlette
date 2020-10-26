@@ -20,7 +20,7 @@ function Header({createMovieSuccess}) {
   const handleShow = () => setShow(true);
 
   const handleSearch = (value) => {
-    history.push(`/search/${value}`);
+    value?.length ? history.push(`/search/${value}`) : history.push(`/`);
   };
 
   const createMovie = (movie) => {
