@@ -3,15 +3,14 @@ import {
   fetchMoviesFailed,
   fetchMoviesSuccess,
   moviesIsLoading,
-} from "./actionCreators";
-import { MOVIES_API_PATH } from "./../core/api-config";
-import { sleeper } from "./../core/helpers";
+} from './actionCreators';
+import { MOVIES_API_PATH } from './../core/api-config';
 
 export function fetchMoviesData(params = {}) {
   return (dispatch) => {
     dispatch(moviesIsLoading(true));
-    fetch(`${MOVIES_API_PATH}?` + new URLSearchParams(params))
-      .then(sleeper(3000))
+
+    return fetch(`${MOVIES_API_PATH}?` + new URLSearchParams(params))
       .then((response) => {
         dispatch(moviesIsLoading(false));
 

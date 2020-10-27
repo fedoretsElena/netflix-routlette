@@ -6,11 +6,12 @@ import PropTypes from 'prop-types';
 import './Details.scss';
 import Header from './Header/Header';
 import ErrorBoundary from './../../components/ErrorBoundary/ErrorBoundary';
-import Results from './../../components/Results/Results';
+import Results from './../../components/Results';
 import Footer from './../../components/Footer/Footer';
 
 function Details({movies}) {
-  const movieId = +useParams().id;
+  const params = useParams();
+  const movieId = +params.id;
   const [movie, setMovie] = useState(null);
 
   const {poster_path, title, genres = [], release_date = null, runtime, overview, vote_average} = movie || {};
@@ -53,7 +54,7 @@ function Details({movies}) {
     </div>
 
     <ErrorBoundary>
-      <Results/>
+      <Results params={params} />
     </ErrorBoundary>
 
     <div className="footer"><Footer/></div>

@@ -6,4 +6,5 @@
 
 # builds and test coverage
 /dist
+/public
 /coverage

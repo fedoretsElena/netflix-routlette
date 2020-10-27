@@ -7,7 +7,7 @@ export const initialState = {
   totalAmount: 0
 };
 
-function  moviesReducer(state = initialState, action) {
+function moviesReducer(state = initialState, action) {
 
   switch (action.type) {
     case ACTIONS.MOVIES_IS_LOADING: {
