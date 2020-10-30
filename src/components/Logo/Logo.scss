@@ -1,8 +1,12 @@
 @import './../../styles/variables';
 
 .logo {
-  color: $primary;
   letter-spacing: .7px;
+
+  a {
+    color: $primary;
+    text-decoration: none;
+  }
 
   a:hover {
     text-decoration: none;

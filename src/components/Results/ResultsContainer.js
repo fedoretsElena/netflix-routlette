@@ -2,6 +2,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { deleteMovie, fetchMoviesData } from './../../store/asyncActionCreators';
+import {
+  moviesDataSelector,
+  moviesErrorSelector,
+  moviesLoadingSelector,
+  moviesTotalAmountSelector,
+  filterParamsSelector
+} from './../../store/selectors';
 import { editMovieSuccess, filterByChanged, sortByChanged } from './../../store/actionCreators';
 import Results from './Results';
 
@@ -14,10 +21,13 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch);
 
 function mapStateToProps(state) {
-  const {movies: {data, loading, error, totalAmount}} = state;
-  const {filterParams} = state;
-
-  return {movies: data, loading, error, totalAmount, filterParams};
+  return {
+    movies: moviesDataSelector(state),
+    loading: moviesLoadingSelector(state),
+    error: moviesErrorSelector(state),
+    totalAmount: moviesTotalAmountSelector(state),
+    filterParams: filterParamsSelector(state)
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Results);

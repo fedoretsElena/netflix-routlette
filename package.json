@@ -8,11 +8,14 @@
     "start": "cross-env NODE_ENV=development node ./server",
     "build": "webpack",
     "build:dev": "cross-env NODE_ENV=development webpack",
-    "build:prod": "cross-env NODE_ENV=production webpack"
+    "build:prod": "cross-env NODE_ENV=production webpack",
+    "storybook": "start-storybook -p 6006 --no-dll",
+    "build-storybook": "build-storybook --no-dll"
   },
   "author": "Olena_Fedorets@epam.com",
   "license": "ISC",
   "dependencies": {
+    "@babel/plugin-proposal-private-methods": "^7.12.1",
     "@testing-library/react-hooks": "^3.4.2",
     "bootstrap": "^4.5.2",
     "es2015": "^0.0.0",
@@ -30,6 +33,7 @@
     "redux": "^4.0.5",
     "redux-mock-store": "^1.5.4",
     "redux-thunk": "^2.3.0",
+    "reselect": "^4.0.0",
     "url-loader": "^4.1.1",
     "yup": "^0.29.3"
   },
@@ -40,6 +44,10 @@
     "@babel/plugin-transform-runtime": "^7.11.0",
     "@babel/preset-env": "^7.10.4",
     "@babel/preset-react": "^7.10.4",
+    "@storybook/addon-actions": "^6.0.28",
+    "@storybook/addon-essentials": "^6.0.28",
+    "@storybook/addon-links": "^6.0.28",
+    "@storybook/react": "^6.0.28",
     "@testing-library/jest-dom": "^5.11.2",
     "@testing-library/react": "^11.1.0",
     "babel-loader": "^8.1.0",
@@ -57,6 +65,7 @@
     "node-sass": "^4.14.1",
     "postcss-loader": "^4.0.4",
     "react-hot-loader": "^4.4.0",
+    "react-is": "^17.0.1",
     "sass-loader": "^9.0.2",
     "style-loader": "^1.2.1",
     "webpack": "^4.44.0",
