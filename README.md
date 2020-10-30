@@ -37,3 +37,9 @@ npm run build:prod
 npm run test
 ```
 
+### Storybook
+```bash
+yarn storybook
+
+build-storybook
+```
